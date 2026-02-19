@@ -1,8 +1,4 @@
 import os
-<<<<<<< HEAD
-def clear():
-    os.system("cls" if os.name == "nt" else "clear")
-=======
 import sys
 from appdirs import user_data_dir
 def clear():
@@ -26,4 +22,3 @@ def init_data_dir():
 def create_file_path(file_name, ex):
     # init data dir returns the app data directory 
     return init_data_dir() + f"/{file_name}.{ex}"
->>>>>>> 8790970 (added start task)
