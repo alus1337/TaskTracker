@@ -8,6 +8,7 @@ import json
 class tools(Enum):
     START_NEW_TASK = '1'
     LIST_ACTIVE_TASKS = '2'
+    ADD_TASK_STEPS = '3'
 
 def start_new_task():
     clear()
@@ -41,17 +42,11 @@ def list_active_tasks():
     #   [0] is used to access the name of the 
     task_files = [f.stem for f in directory_contents.iterdir() if f.is_file()]
 
-    clear()
-    
+    clear()  
     for task in task_files:
         print(task)
-
     input("Press any key to exit...")
 
+def add_task_steps():
+    pass
 
-def tools_main(selection):
-    match selection:
-        case tools.START_NEW_TASK.value:
-            start_new_task()
-        case tools.LIST_ACTIVE_TASKS.value:
-            list_active_tasks()
