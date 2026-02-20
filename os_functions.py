@@ -1,13 +1,11 @@
 import os
 import sys
 from appdirs import user_data_dir
+from constants import APP_NAME, APP_AUTHOR
 def clear():
     os.system("cls" if os.name == "nt" else "clear")
 
 def init_data_dir():
-    APP_NAME = "TaskTracker"
-    APP_AUTHOR = "Alus"
-
     data_dir = user_data_dir(APP_NAME, APP_AUTHOR)
 
     try:

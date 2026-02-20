@@ -1,12 +1,13 @@
 from datetime import datetime
 from enum import Enum
-from os_functions import clear, create_file_path
-import os
-import sys 
+from os_functions import clear, create_file_path 
+from pathlib import Path
+from constants import USER_DATA_DIRECTORY
 import json
 
 class tools(Enum):
     START_NEW_TASK = '1'
+    LIST_ACTIVE_TASKS = '2'
 
 def start_new_task():
     clear()
@@ -33,9 +34,24 @@ def start_new_task():
 
     print(f"{task_object}\nWas printed to {file}")
 
-    
+def list_active_tasks():
+    #   each task has its own json file
+    directory_contents = Path(USER_DATA_DIRECTORY)
 
-def tools_main(selection='1'):
+    #   [0] is used to access the name of the 
+    task_files = [f.stem for f in directory_contents.iterdir() if f.is_file()]
+
+    clear()
+    
+    for task in task_files:
+        print(task)
+
+    input("Press any key to exit...")
+
+
+def tools_main(selection):
     match selection:
         case tools.START_NEW_TASK.value:
             start_new_task()
+        case tools.LIST_ACTIVE_TASKS.value:
+            list_active_tasks()

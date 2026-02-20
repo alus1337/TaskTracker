@@ -15,6 +15,7 @@ def main():
         print(
         """ [TOOLS]
         1. Start new task
+        2. List active tasks
 
         """)
 
@@ -23,9 +24,11 @@ def main():
 
         match selected_tool:
             case tools.START_NEW_TASK.value:
-                tools_main()
-        
-        time.sleep(3)
+                tools_main(tools.START_NEW_TASK.value)
+
+            case tools.LIST_ACTIVE_TASKS.value:
+                tools_main(tools.LIST_ACTIVE_TASKS.value)
+
             
 
 
