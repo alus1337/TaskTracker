@@ -1,25 +1,31 @@
-from version import get_python_version
+from constants import PYTHON_INSTANCE_VERSION
 from tools import tools, tools_main
+from os_functions import clear
 import sys
+import time
 
 def main():
-    print("Hello and welcome to tasktracker :D\n")
-    print(f"This instance of tasktracker is being run on python {get_python_version()}")
 
-    print(
-    """ [TOOLS]
-    1. Start new task
-
-    """)
 
     while(True):
+        clear()
+        print("Hello and welcome to tasktracker :D\n")
+        print(f"This instance of tasktracker is being run on python {PYTHON_INSTANCE_VERSION}")
+
+        print(
+        """ [TOOLS]
+        1. Start new task
+
+        """)
+
         # get the user input
         selected_tool = input("Selection: ").strip()
-        print(f"you have selected {selected_tool} of type {type(selected_tool)}")
 
+        match selected_tool:
+            case tools.START_NEW_TASK.value:
+                tools_main()
         
-        if (selected_tool == tools.START_NEW_TASK.value):
-            tools_main()
+        time.sleep(3)
             
 
 

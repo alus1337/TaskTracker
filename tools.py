@@ -19,18 +19,19 @@ def start_new_task():
 
     current_time = datetime.now()
 
-    task_object = {
-        "task": task,
-        "goal": goal,
-        "Start time": current_time.strftime("%Y-%m-%d %H:%M:%S")
-    }
+    task_object = json.dumps({
+                            "task": task,
+                            "goal": goal,
+                            "Start time": current_time.strftime("%Y-%m-%d %H:%M:%S")
+                            },
+                            indent=4)
 
-    file = create_file_path(task_object["task"], "json")
+    file = create_file_path(task, "json")
     
     with open(file, "w") as f:
-        json.dump(task_object, f, indent=4) 
+        json.dump(task_object, f) 
 
-    print(task_object)
+    print(f"{task_object}\nWas printed to {file}")
 
     
 
