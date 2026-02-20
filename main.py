@@ -1,5 +1,5 @@
 from constants import PYTHON_INSTANCE_VERSION
-from tools import tools, tools_main, start_new_task, list_active_tasks, add_task_steps
+from tools import tools, start_new_task, list_active_tasks, add_task_steps
 from os_functions import clear
 import sys
 import time
@@ -16,7 +16,7 @@ def main():
         """ [TOOLS]
         1. Start new task
         2. List active tasks
-
+        3. Add task steps
         """)
         
         # get the user input
