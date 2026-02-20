@@ -1,5 +1,9 @@
 from pathlib import Path
 from constants import USER_DATA_DIRECTORY
+from os_functions import init_data_dir
+
+def init():
+    init_data_dir()
 
 def get_active_tasks():
     #   each task has its own json file

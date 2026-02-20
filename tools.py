@@ -21,6 +21,7 @@ def start_new_task():
 
     current_time = datetime.now()
 
+    #this is the issue it is double encoded with the final dump
     task_object = json.dumps({
                             "task": task,
                             "goal": goal,
@@ -48,6 +49,31 @@ def add_task_steps():
     clear()
 
     # retrief the current .json file for the task and add a steps key with tuples of steps the tuple is the step and true or false to mark commpletion
-    print(selection(get_active_tasks()))
+    task = selection(get_active_tasks())
+    task_object = json.load(open(f"{USER_DATA_DIRECTORY}/{task}.json", "r"))
+
+    if "steps" not in task_object:
+        task_object["steps"] = []
+
+    while True:
+        step = input("Please provide a short step")
+
+        # creates step and sets completion to false
+        task_object["steps"][step] = 0
+
+        if input("Create another step? Yes or No\nAnswer: ").lower() == "No":
+            break
+
+    print(f"Updated steps\n---\n{task_object["steps"]}")
+
+    if input("Yes or No\nAnswer: ").lower() == "No":
+        return None
+    
+    with open(f"{USER_DATA_DIRECTORY}/{task}.json", "w") as f:
+        json.dump(task_object, f)
+
+        
+
+
     
 

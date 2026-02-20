@@ -3,9 +3,10 @@ from tools import tools, start_new_task, list_active_tasks, add_task_steps
 from os_functions import clear
 import sys
 import time
+from state import init
 
 def main():
-
+    init()
 
     while(True):
         clear()
