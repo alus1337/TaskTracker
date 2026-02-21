@@ -1,0 +1,1 @@
+You are currently working on creating a interactive tools page in main.py with rich. The idea is to have a selection and you navigate throughout them with the arrow keys and enter (the current one selected will be highlighted)

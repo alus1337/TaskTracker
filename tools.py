@@ -9,6 +9,7 @@ class tools(Enum):
     START_NEW_TASK = '1'
     LIST_ACTIVE_TASKS = '2'
     ADD_TASK_STEPS = '3'
+    WORK_ON_TASK = '4'
 
 def start_new_task():
     clear()
@@ -22,17 +23,16 @@ def start_new_task():
     current_time = datetime.now()
 
     #this is the issue it is double encoded with the final dump
-    task_object = json.dumps({
-                            "task": task,
-                            "goal": goal,
-                            "Start time": current_time.strftime("%Y-%m-%d %H:%M:%S")
-                            },
-                            indent=4)
+    task_object = {
+                    "task": task,
+                    "goal": goal,
+                    "Start time": current_time.strftime("%Y-%m-%d %H:%M:%S")
+                    }
 
     file = create_file_path(task, "json")
     
     with open(file, "w") as f:
-        json.dump(task_object, f) 
+        json.dump(task_object, f, indent=4) 
 
     print(f"{task_object}\nWas printed to {file}")
 
@@ -50,23 +50,27 @@ def add_task_steps():
 
     # retrief the current .json file for the task and add a steps key with tuples of steps the tuple is the step and true or false to mark commpletion
     task = selection(get_active_tasks())
+    clear()
+
     task_object = json.load(open(f"{USER_DATA_DIRECTORY}/{task}.json", "r"))
 
     if "steps" not in task_object:
-        task_object["steps"] = []
+        task_object["steps"] = {}
 
     while True:
-        step = input("Please provide a short step")
+        step = input("Please provide a short step.\nAnswer: ")
+        clear()
 
         # creates step and sets completion to false
         task_object["steps"][step] = 0
-
-        if input("Create another step? Yes or No\nAnswer: ").lower() == "No":
+        
+        if input("Create another step? Yes or No\nAnswer: ").lower() == "no":
             break
 
-    print(f"Updated steps\n---\n{task_object["steps"]}")
+    clear()
+    print(f"Updated steps\n---\n{task_object["steps"]}\n---")
 
-    if input("Yes or No\nAnswer: ").lower() == "No":
+    if input("Add these steps? Yes or No\nAnswer: ").lower() == "No":
         return None
     
     with open(f"{USER_DATA_DIRECTORY}/{task}.json", "w") as f:

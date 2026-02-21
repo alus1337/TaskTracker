@@ -1,6 +1,9 @@
 from pathlib import Path
 from constants import USER_DATA_DIRECTORY
 from os_functions import init_data_dir
+from rich.console import Console
+
+CONSOLE = Console()
 
 def init():
     init_data_dir()
