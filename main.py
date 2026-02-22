@@ -29,9 +29,20 @@ def main():
         )
 
         while(True):
-            if readchar
-
             current_selected = 1
+
+            match readchar.readkey():
+                case readchar.key.UP:
+                    if current_selected > 1:
+                        panel_group.renderables[current_selected].style = "on white"
+                        current_selected -= 1
+                case readchar.key.DOWN:
+                    if current_selected < len(list(panel_group.renderables)):
+                        panel_group.renderables[current_selected].style = "on white"
+                        current_selected += 1
+                
+            clear()
+            
             panel_group.renderables[current_selected].style = "on red"
 
             print(Panel(panel_group))
