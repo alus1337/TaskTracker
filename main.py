@@ -5,9 +5,11 @@ from rich import print
 from rich.prompt import Prompt
 from rich.panel import Panel
 from rich.align import Align
+from rich.console import Group
 from state import CONSOLE
 import sys
 import time
+import readchar
 from enum import Enum
 from state import init
 
@@ -19,23 +21,20 @@ def main():
         print("Hello and welcome to tasktracker :D\n")
         print(f"This instance of tasktracker is being run on python {PYTHON_INSTANCE_VERSION}")
 
-        class ToolMenu(Enum):
-            header = Panel(Align.center("[black]TOOLS[/black]"), style="on white")
-            start_new_task = Panel(Align.left("[black]TOOLS[/black]"), style="on white")
-
-        selection_controller = lambda ToolMenu: {
-
-        }
+        panel_group = Group(
+            Panel(Align.center("[black]TOOLS[/black]"), style="on white"),
+            Panel(Align.left("[black]start_new_task[/black]"), style="on white"),
+            Panel(Align.left("[black]List_active_task[/black]"), style="on white"),
+            Panel(Align.left("[black]Add_task_steps[/black]"), style="on white")
+        )
 
         while(True):
-            CONSOLE.print(
-                Panel(Align.center("[black]TOOLS[/black]"), style="on white"),
-                input()
-            )
+            if readchar
 
-            CONSOLE.print(
-                    Panel()
-            )
+            current_selected = 1
+            panel_group.renderables[current_selected].style = "on red"
+
+            print(Panel(panel_group))
 
 
 
