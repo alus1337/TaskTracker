@@ -1,4 +1,5 @@
 from pathlib import Path
+from os_functions import clear
 from constants import USER_DATA_DIRECTORY
 from os_functions import init_data_dir
 from rich.console import Console
@@ -6,6 +7,7 @@ from rich.console import Console
 CONSOLE = Console()
 
 def init():
+    clear()
     init_data_dir()
 
 def get_active_tasks():

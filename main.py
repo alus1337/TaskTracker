@@ -1,5 +1,6 @@
 from constants import PYTHON_INSTANCE_VERSION
 from tools import tools, start_new_task, list_active_tasks, add_task_steps
+from menu import Menu
 from os_functions import clear
 from rich import print
 from rich.prompt import Prompt
@@ -17,10 +18,6 @@ def main():
     init()
 
     while(True):
-        clear()
-        print("Hello and welcome to tasktracker :D\n")
-        print(f"This instance of tasktracker is being run on python {PYTHON_INSTANCE_VERSION}")
-
         panel_group = Group(
             Panel(Align.center("[black]TOOLS[/black]"), style="on white"),
             Panel(Align.left("[black]start_new_task[/black]"), style="on white"),
@@ -28,24 +25,18 @@ def main():
             Panel(Align.left("[black]Add_task_steps[/black]"), style="on white")
         )
 
+        menu = Menu(panel_group)
+
         while(True):
-            current_selected = 1
+            print(Panel(menu.panels))
 
             match readchar.readkey():
                 case readchar.key.UP:
-                    if current_selected > 1:
-                        panel_group.renderables[current_selected].style = "on white"
-                        current_selected -= 1
-                case readchar.key.DOWN:
-                    if current_selected < len(list(panel_group.renderables)):
-                        panel_group.renderables[current_selected].style = "on white"
-                        current_selected += 1
+                    menu.move_up()
                 
             clear()
-            
-            panel_group.renderables[current_selected].style = "on red"
 
-            print(Panel(panel_group))
+            
 
 
 
