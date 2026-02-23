@@ -21,5 +21,11 @@ class Menu:
         self._currently_selected -= 1
         self.set_highlight()
 
+    def move_down(self):
+       if self._currently_selected < len(self.renderables) - 1: 
+        self.remove_current_highlight()
+        self._currently_selected += 1
+        self.set_highlight()
+
     
 

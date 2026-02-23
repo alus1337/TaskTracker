@@ -33,7 +33,8 @@ def main():
             match readchar.readkey():
                 case readchar.key.UP:
                     menu.move_up()
-                
+                case readchar.key.DOWN:
+                    menu.move_down()
             clear()
 
             
