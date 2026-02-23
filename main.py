@@ -17,56 +17,41 @@ from state import init
 def main():
     init()
 
+    panel_group = Group(
+        Panel(Align.center("[black]TOOLS[/black]"), style="on white"),
+        Panel(Align.left("[black]start_new_task[/black]"), style="on white"),
+        Panel(Align.left("[black]List_active_task[/black]"), style="on white"),
+        Panel(Align.left("[black]Add_task_steps[/black]"), style="on white")
+    )
+
+    menu = Menu(panel_group)
+
     while(True):
-        panel_group = Group(
-            Panel(Align.center("[black]TOOLS[/black]"), style="on white"),
-            Panel(Align.left("[black]start_new_task[/black]"), style="on white"),
-            Panel(Align.left("[black]List_active_task[/black]"), style="on white"),
-            Panel(Align.left("[black]Add_task_steps[/black]"), style="on white")
-        )
+        print(Panel(menu.get_panels()))
 
-        menu = Menu(panel_group)
+        match readchar.readkey():
+            case readchar.key.UP:
+                menu.move_up()
+            case readchar.key.DOWN:
+                menu.move_down()
+            case readchar.key.ENTER:
+                break
+        clear()
 
-        while(True):
-            print(Panel(menu.panels))
+    match menu.selected_option():
+        case tools.START_NEW_TASK.value:
+            start_new_task()
 
-            match readchar.readkey():
-                case readchar.key.UP:
-                    menu.move_up()
-                case readchar.key.DOWN:
-                    menu.move_down()
-            clear()
+        case tools.LIST_ACTIVE_TASKS.value:
+            list_active_tasks()
 
-            
+        case tools.ADD_TASK_STEPS.value:
+            add_task_steps()
 
+        case tools.WORK_ON_TASK.value:
+            print("[italic red]Hello[/italic red]:red_heart-emmoji:")
+            time.sleep(3)
 
-
-        print(
-            Panel.fit("[red]TOOLS[/red]", highlight=True),
-            """
-            1. Start new task
-            2. List active tasks
-            3. Add task steps
-            4. Work on task
-            """
-        )
-        
-        # get the user input
-        selected_tool = input("Selection: ").strip()
-
-        match selected_tool:
-            case tools.START_NEW_TASK.value:
-                start_new_task()
-
-            case tools.LIST_ACTIVE_TASKS.value:
-                list_active_tasks()
-
-            case tools.ADD_TASK_STEPS.value:
-                add_task_steps()
-
-            case tools.WORK_ON_TASK.value:
-                print("[italic red]Hello[/italic red]:red_heart-emmoji:")
-                time.sleep(3)
  
             
 

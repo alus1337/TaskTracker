@@ -6,10 +6,10 @@ from state import get_active_tasks, selection
 import json
 
 class tools(Enum):
-    START_NEW_TASK = '1'
-    LIST_ACTIVE_TASKS = '2'
-    ADD_TASK_STEPS = '3'
-    WORK_ON_TASK = '4'
+    START_NEW_TASK = 1
+    LIST_ACTIVE_TASKS = 2
+    ADD_TASK_STEPS = 3
+    WORK_ON_TASK = 4
 
 def start_new_task():
     clear()
