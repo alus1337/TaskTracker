@@ -19,38 +19,38 @@ def main():
 
     panel_group = Group(
         Panel(Align.center("[black]TOOLS[/black]"), style="on white"),
-        Panel(Align.left("[black]start_new_task[/black]"), style="on white"),
-        Panel(Align.left("[black]List_active_task[/black]"), style="on white"),
-        Panel(Align.left("[black]Add_task_steps[/black]"), style="on white")
+        Panel(Align.left("[black]start new task[/black]"), style="on white"),
+        Panel(Align.left("[black]List active task[/black]"), style="on white"),
+        Panel(Align.left("[black]Add task steps[/black]"), style="on white")
     )
-
     menu = Menu(panel_group)
 
     while(True):
-        print(Panel(menu.get_panels()))
+        while(True):
+            menu.run()
 
-        match readchar.readkey():
-            case readchar.key.UP:
-                menu.move_up()
-            case readchar.key.DOWN:
-                menu.move_down()
-            case readchar.key.ENTER:
-                break
-        clear()
+            match readchar.readkey():
+                case readchar.key.UP:
+                    menu.move_up()
+                case readchar.key.DOWN:
+                    menu.move_down()
+                case readchar.key.ENTER:
+                    break
+            clear()
 
-    match menu.selected_option():
-        case tools.START_NEW_TASK.value:
-            start_new_task()
+        match menu.selected_option():
+            case tools.START_NEW_TASK.value:
+                start_new_task()
 
-        case tools.LIST_ACTIVE_TASKS.value:
-            list_active_tasks()
+            case tools.LIST_ACTIVE_TASKS.value:
+                list_active_tasks()
 
-        case tools.ADD_TASK_STEPS.value:
-            add_task_steps()
+            case tools.ADD_TASK_STEPS.value:
+                add_task_steps()
 
-        case tools.WORK_ON_TASK.value:
-            print("[italic red]Hello[/italic red]:red_heart-emmoji:")
-            time.sleep(3)
+            case tools.WORK_ON_TASK.value:
+                print("[italic red]Hello[/italic red]:red_heart-emmoji:")
+                time.sleep(3)
 
  
             

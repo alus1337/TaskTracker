@@ -1,5 +1,10 @@
 from datetime import datetime
 from enum import Enum
+from rich.panel import Panel
+from rich.console import Group
+from rich.align import Align
+from rich import print
+from menu import Menu
 from os_functions import clear, create_file_path 
 from constants import USER_DATA_DIRECTORY
 from state import get_active_tasks, selection
@@ -17,15 +22,11 @@ def start_new_task():
     task = input("Please provide a short task description. Do not include what or why you are doing this task for just simply what needs to be done\nResponse: ")
     clear()
 
-    goal = input("Please provide a short goal that this task contributes to.\nResponse: ")
-    clear()
-
     current_time = datetime.now()
 
     #this is the issue it is double encoded with the final dump
     task_object = {
                     "task": task,
-                    "goal": goal,
                     "Start time": current_time.strftime("%Y-%m-%d %H:%M:%S")
                     }
 
@@ -37,13 +38,22 @@ def start_new_task():
     print(f"{task_object}\nWas printed to {file}")
 
 def list_active_tasks():
+    clear()
     #   [0] is used to access the name of the 
     task_files = get_active_tasks()
 
-    clear()  
-    for task in task_files:
-        print(task)
-    input("Press any key to exit...")
+    panel_group = Group(
+        Panel(Align.center(f"[black]{task_files[0]}[/black]"), style="on white"),
+    )
+
+    for task in range(1, len(task_files)):
+        panel_group.renderables.append(Panel(Align.left(f"[black]{task_files[task]}[/black]"), style="on white"))
+
+    menu = Menu(panel_group)
+    print(Panel(menu.get_panels()))
+    input()
+
+    
 
 def add_task_steps():
     clear()
