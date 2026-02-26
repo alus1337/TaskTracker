@@ -27,8 +27,13 @@ class Menu:
                     self.move_down()
                 case readchar.key.ENTER:
                     break
+                case readchar.key.BACKSPACE:
+                    # created a tuple with the last index stating if this should be deleted
+                    return (self._currently_selected, 1)
             clear()
-
+            # created a tuple with the last index stating if this should be deleted
+        return (self._currently_selected, 0)
+    
     def get_panels(self):
         return self._panels
 
@@ -52,8 +57,8 @@ class Menu:
             self.remove_current_highlight()
             self._currently_selected += 1
             self.set_highlight()
+        
+    # naughty naughty impure functions :D
+        
 
-    def selected_option(self):
-        if self._currently_selected in range(1, len(self._renderables) + 1):
-            return self._currently_selected
    

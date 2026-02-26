@@ -26,9 +26,9 @@ def main():
     menu = Menu(panel_group)
 
     while(True):
-        menu.run()
+        selected_option = menu.run()
 
-        match menu.selected_option():
+        match selected_option[0]:
             case tools.START_NEW_TASK.value:
                 start_new_task()
 

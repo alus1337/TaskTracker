@@ -7,6 +7,7 @@ from rich import print
 from menu import Menu
 from os_functions import clear, create_file_path 
 from constants import USER_DATA_DIRECTORY
+from pathlib import Path
 from state import get_active_tasks, selection
 import json
 
@@ -43,20 +44,24 @@ def list_active_tasks():
     task_files = get_active_tasks()
 
     panel_group = Group(
-        Panel(Align.center(f"[black]{task_files[0]}[/black]"), style="on white"),
+        Panel(Align.center(f"[black]Active tasks[/black]"), style="on white"),
     )
 
     for task in range(1, len(task_files)):
         panel_group.renderables.append(Panel(Align.left(f"[black]{task_files[task]}[/black]"), style="on white"))
 
     menu = Menu(panel_group)
-    menu.run()
+    selected_object = menu.run()
 
-    get_steps = 
+    if selected_object[1]:
+        file_path = Path(create_file_path(task_files[selected_object[0]], "json"))
+        file_path.unlink()
 
-    task_steps_panel = 
 
-    
+
+
+
+  
 
     
 
