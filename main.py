@@ -10,7 +10,7 @@ from rich.console import Group
 from state import CONSOLE
 import sys
 import time
-import readchar
+
 from enum import Enum
 from state import init
 
@@ -26,17 +26,7 @@ def main():
     menu = Menu(panel_group)
 
     while(True):
-        while(True):
-            menu.run()
-
-            match readchar.readkey():
-                case readchar.key.UP:
-                    menu.move_up()
-                case readchar.key.DOWN:
-                    menu.move_down()
-                case readchar.key.ENTER:
-                    break
-            clear()
+        menu.run()
 
         match menu.selected_option():
             case tools.START_NEW_TASK.value:

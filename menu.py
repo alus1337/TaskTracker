@@ -1,6 +1,7 @@
 from os_functions import clear
 from rich.panel import Panel
 from rich import print
+import readchar
 
 class Menu:
     # IMPORTANT: callback functions must be in a list that matches there index to the index of the option
@@ -16,8 +17,17 @@ class Menu:
         # run will run all of the provided panels excluding the first one (header) to as options    
         clear()
 
-        print(Panel(self.get_panels()))
-        input()
+        while(True):
+            print(Panel(self.get_panels()))
+
+            match readchar.readkey():
+                case readchar.key.UP:
+                    self.move_up()
+                case readchar.key.DOWN:
+                    self.move_down()
+                case readchar.key.ENTER:
+                    break
+            clear()
 
     def get_panels(self):
         return self._panels

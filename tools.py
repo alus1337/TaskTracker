@@ -50,8 +50,13 @@ def list_active_tasks():
         panel_group.renderables.append(Panel(Align.left(f"[black]{task_files[task]}[/black]"), style="on white"))
 
     menu = Menu(panel_group)
-    print(Panel(menu.get_panels()))
-    input()
+    menu.run()
+
+    get_steps = 
+
+    task_steps_panel = 
+
+    
 
     
 
