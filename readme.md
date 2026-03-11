@@ -1,1 +1,1 @@
-goal: finish a simand view theple but convient task tracker application by 2/24/26, this application should be able to create task, view tasks, mark completed m, a delete task option should be provided as well
+
